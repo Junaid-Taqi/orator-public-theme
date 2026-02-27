@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-
 <#include init />
 
 <html class="${root_css_class}" dir="<@liferay.language key="lang.dir" />" lang="${w3c_language_id}">
+
+<#assign user = themeDisplay.getUser() />
+<#assign userId = user.getUserId() />
+<#assign fullName = user.getFullName() />
+<#assign emailAddress = user.getEmailAddress() />
+<#assign groups = user.getGroups() />
+
 
 <head>
 	<title>${html_title}</title>
@@ -20,30 +26,7 @@
 
 <@liferay.control_menu />
 
-<div class="container-fluid position-relative" id="wrapper">
-	<header id="banner" role="banner">
-		<div id="heading">
-			<div aria-level="1" class="site-title" role="heading">
-				<a class="${logo_css_class}" href="${site_default_url}" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
-					<img alt="${logo_description}" height="${site_logo_height}" src="${site_logo}" width="${site_logo_width}" />
-				</a>
-
-				<#if show_site_name>
-					<span class="site-name" title="<@liferay.language_format arguments="${site_name}" key="go-to-x" />">
-						${site_name}
-					</span>
-				</#if>
-			</div>
-		</div>
-
-		<#if !is_signed_in>
-			<a data-redirect="${is_login_redirect_required?string}" href="${sign_in_url}" id="sign-in" rel="nofollow">${sign_in_text}</a>
-		</#if>
-
-		<#if has_navigation && is_setup_complete>
-			<#include "${full_templates_path}/navigation.ftl" />
-		</#if>
-	</header>
+<div class="container-fluid position-relative p-0" id="wrapper">
 
 	<section id="content">
 		<h2 class="hide-accessible sr-only" role="heading" aria-level="1">${htmlUtil.escape(the_title)}</h2>
@@ -61,19 +44,41 @@
 		</#if>
 	</section>
 
-	<footer id="footer" role="contentinfo">
-		<p class="powered-by">
-			<@liferay.language_format
-				arguments='<a href="http://www.liferay.com" rel="external">Liferay</a>'
-				key="powered-by-x"
-			/>
-		</p>
-	</footer>
 </div>
 
 <@liferay_util["include"] page=body_bottom_include />
 
 <@liferay_util["include"] page=bottom_include />
+
+<style>
+	.portlet-content{
+	    padding: 0 !important;
+	    border: none !important;
+	}
+</style>
+
+<script>
+	<#if is_signed_in>
+	    const liferayUser = {
+	        userId: "${userId}",
+	        fullName: "${fullName}",
+	        email: "${emailAddress}",
+	        groups: [
+				<#list groups as group>
+				{
+				    id: "${group.getGroupId()}",
+				    name: "${group.getDescriptiveName(themeDisplay.getLocale())}"
+				}<#if group_has_next>,</#if>
+				</#list>
+			]
+	    };
+	    sessionStorage.setItem("liferayUser", JSON.stringify(liferayUser));
+	    console.log("Liferay User:", liferayUser);
+	<#else>
+	    localStorage.clear();
+	    sessionStorage.clear();
+	</#if>
+</script>
 
 </body>
 
