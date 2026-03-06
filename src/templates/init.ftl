@@ -264,7 +264,7 @@
 </#if>
 
 <#if the_title ?has_content && !stringUtil.equals(company_name, site_name) && !page_group.isLayoutPrototype()>
-	<#assign the_title = the_title + " - " + site_name />
+	<#assign the_title = the_title/>
 </#if>
 
 <#if htmlTitle??>
