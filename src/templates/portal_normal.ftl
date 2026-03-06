@@ -78,6 +78,7 @@
 	<#else>
 	    sessionStorage.removeItem('liferayUser');
         sessionStorage.removeItem('token');
+        sessionStorage.removeItem('userLandingPageUrl');
 	</#if>
 </script>
 
