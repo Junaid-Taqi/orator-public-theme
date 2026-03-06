@@ -75,6 +75,11 @@
 	    sessionStorage.removeItem('liferayUser');
         sessionStorage.removeItem('token');
 	</#if>
+	
+	var userLandingPageUrl = localStorage.getItem("userLandingPageUrl");
+    if (userLandingPageUrl === null) {
+    	localStorage.setItem("userLandingPageUrl", window.location.href);
+    }
 </script>
 
 </body>
