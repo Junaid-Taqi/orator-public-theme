@@ -62,11 +62,13 @@
 	        email: "${emailAddress}",
 	        groups: [
 				<#list groups as group>
-				{
-				    id: "${group.getGroupId()}",
-				    name: "${group.getDescriptiveName(themeDisplay.getLocale())}"
-				}<#if group_has_next>,</#if>
-				</#list>
+			        <#if group.isActive()>
+			        {
+			            id: "${group.getGroupId()}",
+			            name: "${group.getDescriptiveName(themeDisplay.getLocale())}"
+			        }<#if group_has_next>,</#if>
+			        </#if>
+			    </#list>
 			]
 	    };
 	    sessionStorage.setItem("liferayUser", JSON.stringify(liferayUser));
