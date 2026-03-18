@@ -8,3 +8,27 @@
 /* endinject */
 
 /* This file allows you to override default styles in one central location for easier upgrade and maintenance. */
+
+.autofit-float.autofit-row.portlet-header {
+    display: none !important;
+}
+.sheet-header {
+    margin-bottom: 0 !important;
+}
+.form-group input, .form-group textarea {
+    border: 1px solid #ddd !important;
+}
+.dropdown.lfr-icon-menu button {
+    padding: 0 !important;
+}
+.sheet-lg {
+    margin-top: 2rem !important;
+}
+
+.sheet-title {
+    color: #000 !important;
+}
+
+.sheet-text label.control-label {
+    color: #000 !important;
+}
