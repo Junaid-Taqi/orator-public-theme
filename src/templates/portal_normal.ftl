@@ -15,7 +15,7 @@
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
 	<@liferay_util["include"] page=top_head_include />
 
-	<meta property="og:title" content="${the_title?html}" />
+	<meta property="og:title" content="${layout.getName(locale)?html}" />
 	<meta property="og:description" content="Your website description" />
 	<meta property="og:url" content="${theme_display.getURLCurrent()}" />
 	<meta property="og:type" content="website" />
