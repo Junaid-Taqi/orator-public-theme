@@ -72,15 +72,15 @@
 			]
 	    };
 	    sessionStorage.setItem("liferayUser", JSON.stringify(liferayUser));
-	    var userLandingPageUrl = localstorage.getItem("userLandingPageUrl");
+	    var userLandingPageUrl = localStorage.getItem("userLandingPageUrl");
 	    if (userLandingPageUrl === null) {
-	    	localstorage.setItem("userLandingPageUrl", window.location.href);
+	    	localStorage.setItem("userLandingPageUrl", window.location.href);
 	    }
 	    console.log("Liferay User:", liferayUser);
 	<#else>
 	    sessionStorage.removeItem('liferayUser');
         sessionStorage.removeItem('token');
-        localstorage.removeItem('userLandingPageUrl');
+        localStorage.removeItem('userLandingPageUrl');
 	</#if>
 </script>
 
